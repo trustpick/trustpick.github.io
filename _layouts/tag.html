@@ -1,54 +1,10 @@
 ---
 layout: archive
-title: "Posts by Tag"
-permalink: /tags/
-author_profile: true
 ---
 
 {{ content }}
 
-{% assign tags_max = 0 %}
-{% for tag in site.tags %}
-  {% if tag[1].size > tags_max %}
-    {% assign tags_max = tag[1].size %}
-  {% endif %}
-{% endfor %}
-
-<h2>All Tags</h2>
-<ul class="tag-list">
-  {% for i in (1..tags_max) reversed %}
-    {% for tag in site.tags %}
-      {% if tag[1].size == i %}
-        <li>
-          {% capture tag_name %}{{ tag[0] | strip }}{% endcapture %}
-          {% if tag_name.size > 0 %}
-            {% assign tag_id = tag_name | escape %}
-            <a href="#{{ tag_id }}">
-              {{ tag_name }}
-              <span class="count">({{ tag[1].size }})</span>
-            </a>
-          {% endif %}
-        </li>
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-
-<h2>Posts by Tag</h2>
-{% for tag in site.tags %}
-  {% capture tag_name %}{{ tag[0] | strip }}{% endcapture %}
-  {% if tag_name.size > 0 %}
-    {% assign tag_id = tag_name | escape %}
-    <section id="{{ tag_id }}">
-      <h3>{{ tag_name }}</h3>
-      <ul>
-        {% for post in tag[1] %}
-          <li>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <small>({{ post.date | date: "%Y-%m-%d" }})</small>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
-{% endfor %}
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+<div class="entries-{{ entries_layout }}">
+  {% include posts-tag.html taxonomy=page.taxonomy type=entries_layout %}
+</div>
