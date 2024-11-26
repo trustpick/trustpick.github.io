@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-#DaumWebMasterTool:0522361fc1faa41e5b7958a115c25ac1f094e0146401894358dfc75bd8c151b0:xyURAutN29HrCybIyr4tjQ==
-Sitemap: https://shop-on.github.io/sitemap.xml
+Sitemap: https://shopon.github.io/sitemap.xml
